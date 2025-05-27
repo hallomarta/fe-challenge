@@ -1,10 +1,10 @@
-# Repo Explorer
+# Movie Buff
 
 ## Goal
-The goal of this assignment is to assess your ability to build a well-structured, performant, and user-friendly React Native application using modern best practices, including the new bridgeless architecture and Gluestack UI.
+To evaluate your proficiency in building a polished, high-performing, and intuitive React Native application utilizing the latest bridgeless architecture, Gluestack UI, and best practices in frontend development.
 
 ## Project Description
-You are tasked with building a "GitHub Repo Explorer" application. This app will allow users to search for public GitHub repositories and view some basic details about them.
+You will create "Movie Buff," an application that allows users to discover popular movies, search for specific titles, and view their details.
 
 ## Core Requirements
 
@@ -15,77 +15,80 @@ You are tasked with building a "GitHub Repo Explorer" application. This app will
             *   iOS: Ensure `RCT_NEW_ARCH_ENABLED=1` is set (usually handled by `npx react-native-new-architecture enable` or manual setup during `pod install`).
     *   **Gluestack UI:** All UI components must be implemented using `@gluestack-ui/themed` and `@gluestack-style/react`.
     *   **Language:** TypeScript.
-    *   **State Management:** Choose a state management solution you deem appropriate (e.g., React Context, Zustand, Redux Toolkit). Justify your choice in the README.
-    *   **API:** GitHub Public API (e.g., `https://api.github.com/search/repositories?q={query}`). No authentication is required for public repo search.
+    *   **State Management:** Select a state management library or pattern you feel is suitable for this application's scale (e.g., React Context, Zustand, Redux Toolkit). Justify your selection in the README.
+    *   **API:** The Movie Database (TMDB) API. You'll need to register for a free API key. (e.g., endpoints for popular movies, search, movie details). *Ensure your API key is not hardcoded directly in the committed code; use environment variables or a similar secure method.*
 
 2.  **Screens & Functionality:**
-    *   **Search Screen:**
-        *   An input field (using Gluestack `Input`) for users to type their search query (e.g., "react native", "gluestack").
-        *   A search button (using Gluestack `Button`).
-        *   Upon pressing the search button, fetch repositories from the GitHub API based on the query.
-        *   Display a loading indicator (e.g., Gluestack `Spinner`) while data is being fetched.
-        *   Display search results in a scrollable list (e.g., using Gluestack `FlatList` or a custom component built with Gluestack primitives suitable for virtualized lists).
-        *   Each list item should display:
-            *   Repository Name
-            *   Owner's Login
-            *   Star Count
-            *   A brief description
-        *   Handle empty states (no results found) and error states (API errors, network issues) gracefully using appropriate Gluestack components (e.g., `Text`, `Heading`, `Box` for layout).
-        *   Tapping on a list item should navigate the user to the Detail Screen.
-    *   **Detail Screen:**
-        *   Display more detailed information about the selected repository:
-            *   Repository Name (as a `Heading`)
-            *   Owner's Login
-            *   Star Count
-            *   Fork Count
-            *   Number of Open Issues
-            *   Primary Language
-            *   Full Description
-            *   Link to the repository on GitHub (make this a tappable Gluestack `Link` that opens in the device browser).
-        *   A "Back" button or header navigation to return to the Search Screen.
+    *   **Discover Screen (Initial Screen):**
+        *   Display a list of currently popular or trending movies fetched from TMDB.
+        *   Each movie in the list should display (at a minimum):
+            *   Poster image (using Gluestack `Image`).
+            *   Title (using Gluestack `Heading` or `Text`).
+            *   Release Date or Popularity Score.
+        *   The list should be scrollable (e.g., Gluestack `FlatList` or a custom virtualized list built with Gluestack primitives).
+        *   Implement a loading state (e.g., Gluestack `Spinner`) while fetching data.
+        *   Handle API errors and empty states gracefully.
+        *   Tapping a movie item navigates to the Movie Detail Screen.
+    *   **Search Functionality:**
+        *   Include an input field (Gluestack `Input`) allowing users to search for movies by title. This can be on the Discover screen or a separate Search screen/tab.
+        *   As the user types (or upon submission), fetch and display search results in a similar list format to the Discover screen.
+        *   Handle loading, error, and "no results" states.
+    *   **Movie Detail Screen:**
+        *   Display detailed information for a selected movie:
+            *   Large Poster Image
+            *   Title (Gluestack `Heading`)
+            *   Overview/Synopsis (Gluestack `Text`)
+            *   Release Date
+            *   Average Rating / Vote Count
+            *   Genres (if available from API)
+        *   Provide a "Back" button or header navigation to return to the previous screen.
 
 3.  **Code Quality & Structure:**
-    *   Clear, well-organized, and maintainable code.
-    *   Reusable components where appropriate.
-    *   Proper error handling and user feedback.
-    *   Follow TypeScript best practices.
-    *   Directory structure that makes sense for a growing application.
+    *   Well-structured, clean, and maintainable code.
+    *   Create reusable components where logical (e.g., MovieListItem).
+    *   Implement robust error handling and provide clear user feedback.
+    *   Adhere to TypeScript best practices.
+    *   Organize your project with a sensible directory structure.
 
 4.  **Testing:**
-    *   Write basic unit tests for at least one key component or utility function using a testing framework like Jest and React Native Testing Library.
+    *   Write basic unit tests for at least one significant component or utility function (e.g., an API service function, a complex UI component) using Jest and React Native Testing Library.
 
-## Bonus Requirements (Optional, but will be looked upon favorably):
+## Bonus Requirements (Optional, but highly valued):
 
-*   **Debouncing:** Implement debouncing for the search input to avoid excessive API calls.
-*   **Pagination/Infinite Scroll:** For the search results list.
-*   **Theming:** Demonstrate minor custom theming with Gluestack (e.g., changing primary color or font styles).
-*   **Accessibility:** Ensure basic accessibility best practices are followed (e.g., proper `accessibilityLabel`s on interactive elements).
-*   **Caching:** Simple caching strategy for API responses (e.g., in-memory for a short duration).
-*   **Advanced State Management:** If you choose a more complex state management library, demonstrate its benefits clearly.
+*   **Favorites System:**
+    *   Allow users to mark movies as "favorites" (e.g., an icon button on list items and the detail screen).
+    *   Persist these favorites locally (e.g., using AsyncStorage or a simple local DB solution).
+    *   Add a "Favorites" screen/tab to display all favorited movies.
+*   **Debounced Search:** Implement debouncing on the search input to optimize API calls.
+*   **Pagination/Infinite Scroll:** For the Discover and/or Search results.
+*   **Custom Gluestack Theming:** Showcase minor theme customizations (e.g., adjusting primary colors, component variants, or font styles).
+*   **Advanced Error Handling:** More specific error messages or user guidance for different API/network issues.
+*   **Pull-to-Refresh:** On the Discover screen to refresh the list of popular movies.
 
 ## Evaluation Criteria
 
-Your submission will be evaluated based on:
+Your submission will be judged on:
 
-1.  **Correctness & Functionality:** Does the app meet all core requirements and function as expected?
-2.  **Code Quality & Structure:** Is the code clean, readable, maintainable, and well-organized?
-3.  **React Native New Architecture:** Is the project correctly set up for the New Architecture? Is there an understanding of its principles?
-4.  **Gluestack UI Implementation:** Effective and appropriate use of Gluestack components and styling.
-5.  **State Management:** Sensible choice and implementation of a state management solution.
-6.  **API Integration:** Clean and robust API integration with proper loading and error handling.
-7.  **Testing:** Quality and relevance of unit tests.
-8.  **Git Usage:** Clear commit history.
-9.  **Documentation:** A comprehensive README file (this file!).
-10. **Problem Solving:** How you approach challenges and make technical decisions.
+1.  **Functionality & Correctness:** Does the application meet all core requirements and operate as expected?
+2.  **Code Quality & Organization:** Is the codebase clean, readable, logically structured, and maintainable?
+3.  **React Native New Architecture Implementation:** Is the project correctly configured for the New Architecture and demonstrates an understanding of its concepts?
+4.  **Gluestack UI Usage:** Proficient and appropriate use of Gluestack components and styling capabilities.
+5.  **State Management:** Rational choice and effective implementation of the chosen state management approach.
+6.  **API Interaction:** Clean, efficient, and resilient integration with the TMDB API, including proper handling of loading states and errors.
+7.  **Testing:** Meaningful and well-written unit tests.
+8.  **Git Practices:** Clear, atomic commits with descriptive messages.
+9.  **Documentation:** A well-written and informative README file (this file!).
+10. **Problem-Solving Skills:** Your approach to tackling challenges and making sound technical decisions.
 
 ## Submission Guidelines
 
 1.  Initialize a Git repository for your project.
-2.  Commit your changes frequently with clear and descriptive messages.
-3.  Push your repository to a public Git hosting service (e.g., GitHub, GitLab).
+2.  Make frequent commits with clear, descriptive messages.
+3.  Host your repository on a public Git platform (e.g., GitHub, GitLab).
 4.  Ensure this `README.md` file is comprehensive and includes:
-    *   **Setup Instructions:** Detailed instructions on how to clone, install dependencies, and run the project on both iOS and Android. Include any specific environment setup if needed (e.g., Node version, Watchman, specific JDK, Xcode version).
-    *   **Architectural Choices:** A brief explanation of your architectural decisions, especially regarding state management (why you chose it) and any significant structural patterns used.
+    *   **API Key Setup:** Clear instructions on how to get an API key from TMDB and configure it for the project (e.g., via an environment variable file that's gitignored, such as `.env`).
+    *   **Setup Instructions:** Detailed steps for setting up the development environment, installing dependencies, and running the application on both iOS and Android. Include any specific environment setup if needed (e.g., Node version, Watchman, specific JDK, Xcode version).
+    *   **Architectural Choices:** A brief overview of your architectural decisions, especially regarding state management (why you chose it) and any significant structural patterns used.
     *   **Assumptions Made:** List any assumptions you made during development.
     *   **Challenges Faced:** Describe any challenges encountered and how you overcame them.
     *   **Requirements Met:** Clearly list which core requirements you've met.
@@ -93,5 +96,12 @@ Your submission will be evaluated based on:
     *   **Time Spent:** An estimate of the time you spent on the assignment.
 5.  Submit the link to your public repository.
 
+## Time Expectation
+We anticipate this assignment will require approximately 4-8 hours of focused effort. Please prioritize quality and demonstrating your core skills within this timeframe.
+
 ## A Note on the New Architecture
-The primary focus for the New Architecture requirement is on correctly setting up an RN project with Fabric enabled and understanding its implications. You are not expected to write complex custom Fabric components or TurboModules unless you identify a specific need and have the time to demonstrate that skill. Your React component structure and state management choices should ideally reflect an awareness of the potential performance benefits and direct communication capabilities offered by Fabric.
+The main expectation regarding the New Architecture is its correct setup and your ability to develop within this environment. Writing custom, complex Fabric components or TurboModules is not required unless you find it essential for a specific feature and wish to showcase this advanced skill (time permitting). Your component design and state management should, however, be developed with an understanding of the new architecture's benefits.
+
+---
+
+Good luck, and we're excited to see what you build!
