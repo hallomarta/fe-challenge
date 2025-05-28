@@ -101,7 +101,3 @@ We anticipate this assignment will require approximately 4-8 hours of focused ef
 
 ## A Note on the New Architecture
 The main expectation regarding the New Architecture is its correct setup and your ability to develop within this environment. Writing custom, complex Fabric components or TurboModules is not required unless you find it essential for a specific feature and wish to showcase this advanced skill (time permitting). Your component design and state management should, however, be developed with an understanding of the new architecture's benefits.
-
----
-
-Good luck, and we're excited to see what you build!
